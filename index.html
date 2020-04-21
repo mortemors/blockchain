@@ -25,8 +25,110 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					Blockchain
+					<aside class="notes">
+						A blockchain (também conhecido como “o protocolo da confiança”) é uma tecnologia de registro distribuído que visa a descentralização como medida de segurança.[1] São bases de registros e dados distribuídos e compartilhados que têm a função de criar um índice global para todas as transações que ocorrem em um determinado mercado. Funciona como um livro-razão, só que de forma pública, compartilhada e universal, que cria consenso e confiança na comunicação direta entre duas partes, ou seja, sem o intermédio de terceiros. Está constantemente crescendo à medida que novos blocos completos são adicionados a ela por um novo conjunto de registros. Os blocos são adicionados à blockchain de modo linear e cronológico. Cada nó - qualquer computador que conectado a essa rede tem a tarefa de validar e repassar transações - obtém uma cópia da blockchain após o ingresso na rede. A blockchain possui informação completa sobre endereços e saldos diretamente do bloco gênese até o bloco mais recentemente concluído.
+					</aside>
+				</section>
+				<section>
+					Origem
+					<aside class="notes">
+						O artigo descrevendo o funcionamento do bitcoin foi publicado em 2008 por Satoshi Nakamoto, pseudônimo de um programador ou grupo de programadores anônimo(s). Uma versão inicial do software foi lançada em 2009. Até 2012, a moeda era usada principalmente em mercados negros virtuais, tais quais o Silk Road. Desde 2013, o uso e a cotação da moeda perante o dólar tem aumentado significativamente, com o valor máximo histórico sendo registrado em 17 de Dezembro de 2017, a 19 666 dólares por bitcoin. A cotação tem sofrido alta instabilidade, devido, entre outros fatores, a ataques contra bolsas de câmbio virtuais. De Dezembro de 2017 a Fevereiro de 2018, o valor do bitcoin caiu 70%, por exemplo.
+					</aside>
+				</section>
+				<section>
+					Como funciona
+					<aside class="notes">
+						Hashing
+					</aside>
+				</section>
+				<section>
+					<section>
+						Simple project
+					</section>		
+					<section>
+						<p class="fragment grow">A block</p>
+						<p class="fragment grow">Cryptography</p>
+						<p class="fragment grow">Difficulty and nonce</p>
+						<p class="fragment grow">Genesis block</p>
+						<!-- <p class="fragment shrink"></p>
+						<p class="fragment strike">strike</p>
+						<p class="fragment fade-out">fade-out</p>
+						<p class="fragment fade-up">fade-up (also down, left and right!)</p>
+						<p class="fragment fade-in-then-out">fades in, then out when we move to the next step</p> -->
+					</section>		
+					<section>
+						<pre><code data-trim data-noescape>
+							const sha256 = require('js-sha256').sha256
+
+							const blockchain = (function(){
+							const blocks = []
+
+							const initBlockchain = () => {
+								const data = 'Hello World!'
+								const timestamp = new Date()
+								const previousHash = 0
+								const index = 0
+								hashBlock(data, timestamp, previousHash, index)
+							}
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						const hashBlock = (data, timestamp, prevHash, index) => {
+							let hash = '', nonce = 0
+						
+							while( !isHashValid(hash) ){
+								let input = `${data}${timestamp}${prevHash}${index}${nonce}`
+								hash = sha256(input)
+								nonce += 1
+							}
+							console.log(nonce)
+							blocks.push(hash)
+						}
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+						
+							const getLastHash = blocks => blocks.slice(-1)[0]
+					
+							const isHashValid = hash => hash.startsWith('0000') // Difficulty
+						
+							const addNewBlock = data => {
+								const index = blocks.length
+								const previousHash = getLastHash(blocks)
+								hashBlock(data, new Date(), previousHash, index)
+							}
+						
+							const getAllBlocks = () => blocks
+						
+						</code></pre>
+					</section>
+					<section>
+						<pre><code data-trim data-noescape>
+							return {
+								initBlockchain,
+								getLastHash,
+								blocks,
+								getAllBlocks,
+								addNewBlock
+							}
+							})()
+						
+							module.exports = blockchain
+
+						</code></pre>
+					</section>
+				</section>
+								<section>
+									Conclusion
+								</section>		
+				<section>
+					https://medium.com/@felipemfp/entendendo-como-funciona-uma-blockchain-com-python-4e5a66f09e16
+				</section>
+				
 			</div>
 		</div>
 
@@ -43,7 +145,12 @@
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/highlight/highlight.js' },
 					{ src: 'plugin/notes/notes.js', async: true }
-				]
+				],
+				width: "100%",
+				height: "100%",
+				margin: 0,
+				minScale: 1,
+				maxScale: 1
 			});
 		</script>
 	</body>
