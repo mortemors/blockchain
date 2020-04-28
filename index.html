@@ -85,23 +85,47 @@
 						</section>		
 						<section>
 							<p class="fragment grow">O bloco</p>
-							<p class="fragment grow">Criptografia</p>
-							<p class="fragment grow">Bloco Genesis</p>
+							<p class="fragment grow">A Corrente</p>
+							<aside class="notes">
+								O bloco é onde ficam os dados que serão armazenados na blockchain enquanto a corrente faz a ligação entre os blocos.
+							</aside>
 						</section>		
 						<section>
 								<img data-src="./src/01.PNG">
+								<aside class="notes">
+									Dentro da classe bloco
+									Primeiramente importamos datetime para pegarmos a hora e data atuais, depois uma biblioteca de hash que vai gerar a hash dos nossos blocos, o bloco tem 7 variáveis que começam com valores estáticos, então criamos o construtor que recebe dados.
+								</aside>
 						</section>
 						<section>
 								<img data-src="./src/02.PNG">
+								<aside class="notes">
+									ainda na classe bloco temos o método hash, que vai carregar a biblioteca e adicionar a variável key, após isso ela adiciona as variáveis do bloco e cria o hash.
+								</aside>
 						</section>
 						<section>
 								<img data-src="./src/03.PNG">
+								<aside class="notes">
+									Agora vamos para a classe blockchain:
+									possui três variáveis, a primeira é a dificuldade, a segunda maximo de nonce limita a quantidade de hashes que serão tentados
+									o alvo é a função que define que a hash gerada tem que ficar abaixo deste número.
+									O bloco inicial geralmente chamado de Genesis é criado e a variável topo recebe a variável bloco
+									Seguimos para a função adicionar:
+									Ela recebe um bloco como parametro a variável hashAnterior recebe o retorno da função hash do bloco atual, 									o número do bloco é incrementado em um, o proximo recebe o bloco recebido por parametro, e o bloco da classe recebe o proximo bloco.
+									E finalmente a função mine, para n até maxNonce se o hash em hexa for menor ou igual ao alvo ele adiciona um bloco, imprime o bloco e sai do loop, se não ele aumenta o nonce.
+								</aside>
 						</section>
 						<section>
 								<img data-src="./src/04.PNG">
+								<aside class="notes">
+									Aqui iniciamos a classe blockchain e adicionamos operações de mineração com dados sendo o texto bloco mais o número do bloco.
+								</aside>
 						</section>
 						<section>
 								<img data-src="./src/05.PNG">
+								<aside class="notes">
+									Este é o resultado, o bloco Genesis não tem hashes por ele ser hard coded, os demais tem um número variável de hashes sendo o número de tentativas.
+								</aside>
 						</section>
 				</section>
 				<section>
@@ -146,6 +170,7 @@
 						<p>https://www.welivesecurity.com/br/2018/09/06/blockchain-entenda-como-funciona-e-como-esta-sendo-usada-no-mercado/</p>
 						<p>https://blog.nubank.com.br/o-que-e-blockchain/</p>
 						<p>https://github.com/edenau/Minimal-Blockchain</p>
+						<p>https://learnmeabitcoin.com/</p>
 				</section>
 				
 			</div>
